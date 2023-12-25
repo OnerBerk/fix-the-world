@@ -11,14 +11,14 @@ datasource db {
 }
 
 model FixUser {
-  id         Int         @id @default(autoincrement())
-  firstname  String
-  lastname   String
-  email      String      @unique
-  roles      RolesEnum[]
-  password   String
-  created_at DateTime?   @default(now()) @db.Timestamptz(6)
-  updated_at DateTime?   @default(now()) @db.Timestamptz(6)
+  fix_user_id Int         @id @default(autoincrement())
+  firstname   String
+  lastname    String
+  email       String      @unique
+  roles       RolesEnum[]
+  password    String
+  created_at  DateTime?   @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime?   @default(now()) @db.Timestamptz(6)
 }
 
 enum RolesEnum {

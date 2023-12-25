@@ -3,5 +3,6 @@
   "trailingComma": "all",
   "bracketSpacing": false,
   "bracketSameLine": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "printWidth":100
 }

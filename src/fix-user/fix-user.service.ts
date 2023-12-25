@@ -17,7 +17,9 @@ export class FixUserService {
   findOne(id: number): Promise<FixUser> {
     return this.prisma.fixUser.findUnique({where: {id: id}});
   }
-
+  async findByEmail(email: string): Promise<FixUser> {
+    return this.prisma.fixUser.findUnique({where: {email: email}});
+  }
   update(id: number, updateFixUserDto: UpdateFixUserDto) {
     return `This action updates a #${id} fixUser`;
   }
