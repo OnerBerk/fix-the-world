@@ -3,9 +3,19 @@ import {AppModule} from './app.module';
 import * as process from 'process';
 import {DatabaseCheck} from './database/database.check';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
+import {WinstonModule} from 'nest-winston';
+import {instance} from 'Logger/winston.logger';
+import {ResponseInterceptor} from './response/response.interceptor';
+import {ValidationPipe} from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      instance: instance,
+    }),
+  });
+  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalPipes(new ValidationPipe());
   const databaseChecker = app.get(DatabaseCheck);
   await databaseChecker.checkConnection();
   const config = new DocumentBuilder()

@@ -7,10 +7,10 @@ CREATE TABLE "FixUser" (
     "firstname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "roles" "RolesEnum"[],
+    "roles" "RolesEnum"[] DEFAULT ARRAY['User']::"RolesEnum"[],
     "password" TEXT NOT NULL,
-    "created_at" TIMESTAMPTZ(6) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ(6) DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "FixUser_pkey" PRIMARY KEY ("id")
 );

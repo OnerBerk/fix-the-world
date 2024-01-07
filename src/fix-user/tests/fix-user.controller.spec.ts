@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { FixUserController } from './fix-user.controller';
-import { FixUserService } from './fix-user.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {FixUserController} from '../fix-user.controller';
+import {FixUserService} from '../fix-user.service';
 
 describe('FixUserController', () => {
   let controller: FixUserController;

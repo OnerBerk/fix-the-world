@@ -1,30 +1,32 @@
 import {Injectable} from '@nestjs/common';
-import {CreateFixUserDto} from './dto/create-fix-user.dto';
 import {UpdateFixUserDto} from './dto/update-fix-user.dto';
-import {FixUser, PrismaClient} from '@prisma/client';
+import {FixUser, Prisma} from '@prisma/client';
+import {PrismaService} from '../prisma/prisma.service';
 
 @Injectable()
 export class FixUserService {
-  prisma = new PrismaClient();
-  create(createFixUserDto: CreateFixUserDto) {
-    return 'This action adds a new fixUser';
-  }
+  constructor(private prisma: PrismaService) {}
 
-  findAll(): Promise<FixUser[]> {
+  async users(): Promise<FixUser[]> {
     return this.prisma.fixUser.findMany();
   }
-
-  findOne(id: number): Promise<FixUser> {
-    return this.prisma.fixUser.findUnique({where: {id: id}});
+  async findOneWhereUniqueInput(input: Prisma.FixUserWhereUniqueInput): Promise<FixUser | null> {
+    return this.prisma.fixUser.findUnique({where: input});
   }
-  async findByEmail(email: string): Promise<FixUser> {
+
+  async findById(id: number): Promise<FixUser | null> {
+    return this.prisma.fixUser.findUnique({where: {id}});
+  }
+
+  async findByEmail(email: string): Promise<FixUser | null> {
     return this.prisma.fixUser.findUnique({where: {email: email}});
   }
-  update(id: number, updateFixUserDto: UpdateFixUserDto) {
+
+  async update(id: number, updateFixUserDto: UpdateFixUserDto) {
     return `This action updates a #${id} fixUser`;
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} fixUser`;
   }
 }
