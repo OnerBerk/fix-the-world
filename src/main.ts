@@ -22,6 +22,7 @@ async function bootstrap() {
     .setTitle('Fix the World Api')
     .setDescription('The api which change everything')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

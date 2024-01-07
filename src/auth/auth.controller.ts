@@ -1,8 +1,8 @@
-import {Controller, Get, Post, Body, UseGuards, Request} from '@nestjs/common';
+import {Controller, Get, Post, Body, UseGuards, Request, Logger} from '@nestjs/common';
 import {AuthService} from './auth.service';
 import {RegisterAuthDto} from './dto/register-auth.dto';
 import {LoginAuthDto} from './dto/login-auth.dto';
-import {ApiTags} from '@nestjs/swagger';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 import {AuthGuard} from './auth.guard';
 
 @ApiTags('Auth')
@@ -20,8 +20,10 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @Get('profile')
   getProfile(@Request() req) {
+    Logger.log('ici', req);
     return req.user;
   }
 }

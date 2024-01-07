@@ -11,6 +11,6 @@ export const responseHandler = (res: any, context: ExecutionContext) => {
     status: true,
     path: request.url,
     statusCode,
-    result: res,
+    content: res,
   };
 };
